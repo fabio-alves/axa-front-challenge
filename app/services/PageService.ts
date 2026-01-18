@@ -16,7 +16,7 @@ export class PageService {
     this.pageMap.set('screenapage', new ScreenAPage());
     this.pageMap.set('screenbpage', new ScreenBPage());
     this.pageMap.set('screencpage', new ScreenCPage());
-    this.pageMap.set('hollydays', new HollydaysPage());
+    this.pageMap.set('hollydays', new HollydaysPage({}));
   }
 
   public getPage(route: string): any {
