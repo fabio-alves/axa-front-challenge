@@ -1,72 +1,72 @@
-# Guia de Testes e Gerenciamento de Estado
+# Testing and State Management Guide
 
-## 📦 Ferramentas Instaladas
+## 📦 Installed Tools
 
-### Gerenciador de Estado: **Zustand**
-- ✅ Leve e simples
-- ✅ Funciona bem com TypeScript
-- ✅ Não precisa de providers
-- ✅ Ideal para gerenciamento de estado global
+### State Manager: **Zustand**
+- ✅ Lightweight and simple
+- ✅ Works well with TypeScript
+- ✅ No providers needed
+- ✅ Ideal for global state management
 
-### Testes: **Jest + React Testing Library**
-- ✅ Padrão do Next.js
-- ✅ Suporte completo a componentes React
-- ✅ Simples de configurar e usar
+### Testing: **Jest + React Testing Library**
+- ✅ Next.js standard
+- ✅ Full support for React components
+- ✅ Simple to configure and use
 
-## 🗂️ Estrutura Criada
+## 🗂️ Created Structure
 
 ```
 app/
 ├── stores/
-│   └── holidayStore.ts          # Store Zustand para gerenciar estado dos feriados
+│   └── holidayStore.ts          # Zustand store to manage holidays state
 ├── __tests__/
 │   ├── components/
-│   │   └── Badge.test.tsx       # Testes do componente Badge
-│   └── stores/
-│       └── holidayStore.test.ts # Testes do store
+│   │   └── Badge.test.tsx       # Badge component tests
+│   ├── stores/
+│   │   └── holidayStore.test.ts # Store tests
+│   └── api/
+│       └── holidays/
+│           └── route.test.ts    # API route tests
 ```
 
-## 🚀 Como Usar o Zustand Store
+## 🚀 How to Use Zustand Store
 
-### 1. Importar o store
+### 1. Import the store
 
 ```typescript
 import { useHolidayStore } from '../stores/holidayStore';
 ```
 
-### 2. Usar no componente
+### 2. Use in component
 
 ```typescript
 function MyComponent() {
   const { 
-    records,           // Array de feriados
-    loading,           // Estado de carregamento
-    error,             // Mensagem de erro
-    totalRecords,      // Total de registros
-    fetchHolidays,     // Função para buscar feriados
-    setSearchValue,    // Atualizar valor de busca
-    // ... outros métodos
+    records,           // Array of holidays
+    loading,           // Loading state
+    error,             // Error message
+    totalRecords,      // Total records
+    fetchHolidays,     // Function to fetch holidays
+    setSearchValue,    // Update search value
   } = useHolidayStore();
 
-  // Buscar ao montar componente
   useEffect(() => {
     fetchHolidays();
   }, []);
 
-  return <div>{/* seu componente */}</div>;
+  return <div>{/* your component */}</div>;
 }
 ```
 
-### 3. Fazer requisição no store
+### 3. Make request in store
 
-Edite `app/stores/holidayStore.ts` e modifique a função `fetchHolidays`:
+Edit `app/stores/holidayStore.ts` and modify the `fetchHolidays` function:
 
 ```typescript
 fetchHolidays: async () => {
   set({ loading: true, error: null });
   
   try {
-    // Sua requisição aqui
     const response = await fetch('/api/holidays');
     const data = await response.json();
     
@@ -77,31 +77,31 @@ fetchHolidays: async () => {
     });
   } catch (error) {
     set({ 
-      error: 'Erro ao buscar feriados',
+      error: 'Error fetching holidays',
       loading: false 
     });
   }
 },
 ```
 
-## 🧪 Como Executar Testes
+## 🧪 How to Run Tests
 
-### Executar todos os testes
+### Run all tests
 ```bash
 npm test
 ```
 
-### Executar testes em modo watch (desenvolvimento)
+### Run tests in watch mode (development)
 ```bash
 npm run test:watch
 ```
 
-### Executar testes com cobertura
+### Run tests with coverage
 ```bash
 npm run test:coverage
 ```
 
-## 📝 Exemplo de Teste
+## 📝 Test Example
 
 ```typescript
 import { render, screen } from '@testing-library/react';
@@ -115,7 +115,7 @@ describe('Badge Component', () => {
 });
 ```
 
-## 📚 Documentação
+## 📚 Documentation
 
 - **Zustand**: https://github.com/pmndrs/zustand
 - **Jest**: https://jestjs.io/

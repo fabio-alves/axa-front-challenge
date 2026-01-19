@@ -1,5 +1,31 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Project Architecture
+
+### API Routes
+This project uses Next.js API Routes for server-side requests. API endpoints are located in the `app/api/` directory and follow the Next.js App Router pattern. All external API calls are made through these Next.js API routes, which then forward requests to external services.
+
+### State Management
+State management is handled using **Zustand**, a lightweight state management library that follows a **store-based pattern**. Zustand uses a simple, hook-based API that doesn't require providers or complex setup. The stores are located in `app/stores/` and can be accessed throughout the application using hooks.
+
+### Routing
+The project follows Next.js App Router conventions with pages located in the `app/pages/` directory. Each page component is registered in the `PageService` and can be accessed through the main navigation tabs.
+
+### Project Structure
+The project follows a modular, object-oriented architecture:
+
+- **`app/components/`** - Reusable UI components (e.g., `Header`, `Badge`, `Dropdown`, `SearchInput`)
+- **`app/pages/`** - Page components that represent different views/screens
+- **`app/stores/`** - Zustand stores for global state management
+- **`app/hooks/`** - Custom React hooks (e.g., `useAlert`)
+- **`app/models/`** - Domain model classes (e.g., `Tab`, `TabManager`)
+- **`app/services/`** - Service classes for business logic
+- **`app/api/`** - Next.js API routes
+- **`app/types/`** - TypeScript type definitions
+- **`app/__tests__/`** - Test files organized by type (components, stores, api)
+
+When creating new reusable components, add them to `app/components/`. Similarly, new stores go in `app/stores/`, tests in `app/__tests__/`, and so on, maintaining this organizational pattern.
+
 ## Getting Started
 
 First, run the development server:
@@ -20,17 +46,4 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

@@ -3,7 +3,6 @@ import { useHolidayStore } from '../../stores/holidayStore';
 
 describe('HolidayStore', () => {
   beforeEach(() => {
-    // Reset store state before each test
     const { result } = renderHook(() => useHolidayStore());
     act(() => {
       result.current.setRecords([]);
@@ -25,7 +24,7 @@ describe('HolidayStore', () => {
   it('should set records', () => {
     const { result } = renderHook(() => useHolidayStore());
     const mockRecords = [
-      { nome: 'Test Holiday', data: '01/01/2025', tipo: 'nacional' as const },
+      { name: 'Test Holiday', date: '01/01/2025', type: 'nacional' as const },
     ];
 
     act(() => {
@@ -71,13 +70,13 @@ describe('HolidayStore', () => {
     const { result } = renderHook(() => useHolidayStore());
 
     act(() => {
-      result.current.setTipoFilter('nacional');
-      result.current.setDataFilter('2025');
-      result.current.setSortBy('nome');
+      result.current.setTypeFilter('nacional');
+      result.current.setDateFilter('2025');
+      result.current.setSortBy('name');
     });
 
-    expect(result.current.tipoFilter).toBe('nacional');
-    expect(result.current.dataFilter).toBe('2025');
-    expect(result.current.sortBy).toBe('nome');
+    expect(result.current.typeFilter).toBe('nacional');
+    expect(result.current.dateFilter).toBe('2025');
+    expect(result.current.sortBy).toBe('name');
   });
 });

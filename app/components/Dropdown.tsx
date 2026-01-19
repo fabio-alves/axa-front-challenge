@@ -9,11 +9,23 @@ interface DropdownProps {
   onChange?: (value: string) => void;
   className?: string;
   placeholder?: string;
+  noBorder?: boolean;
+  variant?: 'default' | 'light-gray';
 }
 
 export default class Dropdown extends Component<DropdownProps> {
   public render(): ReactElement {
-    const { label, options = [], value, onChange, className = '', placeholder = '' } = this.props;
+    const { label, options = [], value, onChange, className = '', placeholder = '', noBorder = false, variant = 'default' } = this.props;
+
+    let selectClasses = '';
+    
+    if (noBorder) {
+      selectClasses = "appearance-none px-4 py-2 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-zinc-900 dark:text-white w-full pr-10";
+    } else if (variant === 'light-gray') {
+      selectClasses = "appearance-none px-4 py-2 border border-gray-300 rounded-lg bg-gray-100 text-black focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-zinc-800 dark:border-zinc-700 dark:text-white w-full pr-10";
+    } else {
+      selectClasses = "appearance-none px-4 py-2 border border-gray-300 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-zinc-900 dark:border-zinc-700 dark:text-white w-full pr-10";
+    }
 
     return (
       <div className={className}>
@@ -26,7 +38,7 @@ export default class Dropdown extends Component<DropdownProps> {
           <select
             value={value || ''}
             onChange={(e) => onChange && onChange(e.target.value)}
-            className="appearance-none px-4 py-2 border border-gray-300 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-zinc-900 dark:border-zinc-700 dark:text-white w-full pr-10"
+            className={selectClasses}
           >
             {placeholder && (
               <option value="" disabled>

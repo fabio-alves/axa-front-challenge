@@ -6,14 +6,10 @@ import { TabManager } from './models/TabManager';
 import { PageService } from './services/PageService';
 import Header from './components/Header';
 
-/**
- * Componente principal da aplicação com header e tabs
- */
 export default class Home extends Component<{}, { tabManager: TabManager; pageService: PageService }> {
   constructor(props: {}) {
     super(props);
     
-    // Inicializa as tabs
     const tabs = [
       new Tab('screenapage', 'Tela A', 'screenapage'),
       new Tab('screenbpage', 'Tela B', 'screenbpage'),
@@ -21,8 +17,7 @@ export default class Home extends Component<{}, { tabManager: TabManager; pageSe
       new Tab('hollydays', 'Feriados', 'hollydays'),
     ];
 
-    // Inicializa o TabManager e PageService
-    const tabManager = new TabManager(tabs, 'home');
+    const tabManager = new TabManager(tabs, 'hollydays');
     const pageService = new PageService();
 
     this.state = {

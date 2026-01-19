@@ -4,9 +4,9 @@ import { Component, ReactElement } from 'react';
 import Badge from './Badge';
 
 export interface HolidayRecord {
-  nome: string;
-  data: string;
-  tipo: 'nacional' | 'municipal' | 'estadual';
+  name: string;
+  date: string;
+  type: 'nacional' | 'municipal' | 'estadual';
 }
 
 interface HolidayTableProps {
@@ -37,12 +37,12 @@ export default class HolidayTable extends Component<HolidayTableProps> {
                 onClick={() => onRowClick && onRowClick(record)}
                 className="border-b border-gray-100 dark:border-zinc-800 hover:bg-gray-50 dark:hover:bg-zinc-900 cursor-pointer transition-colors"
               >
-                <td className="py-4 px-4 text-gray-700 dark:text-gray-300">{record.nome}</td>
-                <td className="py-4 px-4 text-gray-700 dark:text-gray-300">{record.data}</td>
+                <td className="py-4 px-4 text-gray-700 dark:text-gray-300">{record.name}</td>
+                <td className="py-4 px-4 text-gray-700 dark:text-gray-300">{record.date}</td>
                 <td className="py-4 px-4">
                   <Badge
-                    label={record.tipo.charAt(0).toUpperCase() + record.tipo.slice(1)}
-                    type={record.tipo}
+                    label={record.type.charAt(0).toUpperCase() + record.type.slice(1)}
+                    type={record.type}
                   />
                 </td>
                 <td className="py-4 px-4">

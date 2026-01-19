@@ -1,8 +1,5 @@
 import { ReactElement } from 'react';
 
-/**
- * Classe que representa a página About
- */
 export default class ScreenBPage {
   public render(): ReactElement {
     return (

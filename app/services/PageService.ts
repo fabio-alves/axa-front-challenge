@@ -13,7 +13,7 @@ export class PageService {
   }
 
   private initializePages(): void {
-    this.pageMap.set('screenapage', new ScreenAPage());
+    this.pageMap.set('screenapage', new ScreenAPage({}));
     this.pageMap.set('screenbpage', new ScreenBPage());
     this.pageMap.set('screencpage', new ScreenCPage());
     this.pageMap.set('hollydays', new HollydaysPage({}));
